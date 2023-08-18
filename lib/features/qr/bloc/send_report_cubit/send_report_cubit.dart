@@ -33,7 +33,7 @@ class SendReportCubit extends Cubit<SendReportInitial> {
 
     if (pair.first == null) {
       if (context.mounted) {
-        NoteMessage.showSnakeBar(message: pair.second ?? '', context: context);
+        // NoteMessage.showSnakeBar(message: pair.second ?? '', context: context);
       }
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
     } else {

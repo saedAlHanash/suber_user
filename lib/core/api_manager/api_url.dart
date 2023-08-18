@@ -3,6 +3,8 @@ class GetUrl {
   static const getPolicy = 'api/services/app/Settings/Getsettings';
   static const getReport = 'api/services/app/InstitutionAttendancesService/GetAll';
 
+  static var home1 = 'api/services/app/InstitutionHomeService/Get';
+
 }
 
 class PostUrl {

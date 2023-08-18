@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:qr_mobile_vision_example/core/extensions/extensions.dart';
+import 'package:qr_mobile_vision_example/features/auth/data/response/home1_response.dart';
 import 'package:qr_mobile_vision_example/features/super_user/data/response/super_users_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -163,5 +164,17 @@ class AppSharedPreference {
     _prefs?.setStringList(_requests, jsonCart);
   }
 
-  static List<String> getJsonListRequest() => _prefs?.getStringList(_requests) ?? <String>[];
+  static List<String> getJsonListRequest() =>
+      _prefs?.getStringList(_requests) ?? <String>[];
+
+  static void cashHome(Home1Result home1result) {
+    var stringJson = jsonEncode(home1result);
+    _prefs?.setString('home', stringJson);
+  }
+
+  static Home1Result? getHome() {
+    var stringJson = _prefs?.getString('home');
+    if (stringJson == null) return null;
+    return Home1Result.fromJson(jsonDecode(stringJson));
+  }
 }

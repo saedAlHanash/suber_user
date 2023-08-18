@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_mobile_vision_example/core/strings/app_color_manager.dart';
 
 import '../../core/injection/injection_container.dart' as di;
+import '../../features/auth/bloc/home1_cubit/home1_cubit.dart';
 import '../../features/qr/ui/pages/qr_page.dart';
 import '../../router/app_router.dart';
 import '../app_theme.dart';

@@ -3,9 +3,11 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/auth/bloc/home1_cubit/home1_cubit.dart';
 import '../../features/auth/bloc/login_cubit/login_cubit.dart';
 import '../../features/auth/bloc/policy_cubit/policy_cubit.dart';
 
+import '../../features/qr/bloc/scan_cubit/scan_cubit.dart';
 import '../../features/qr/bloc/send_report_cubit/send_report_cubit.dart';
 import '../../features/super_user/bloc/all_super_users_cubit/all_super_users_cubit.dart';
 import '../app/bloc/loading_cubit.dart';
@@ -41,6 +43,8 @@ Future<void> init() async {
   sl.registerFactory(() => AllSuperUsersCubit());
   //endregion
   sl.registerFactory(() => SendReportCubit());
+  sl.registerFactory(() => Home1Cubit());
+  sl.registerFactory(() => ScanCubit());
 
 
 //! External

@@ -12,12 +12,12 @@ class ErrorManager {
   static String getApiError(Response response) {
     switch (response.statusCode) {
       case 401:
-        AppSharedPreference.logout();
-
-        APIService.reInitial();
-        sl<GlobalKey<NavigatorState>>()
-            .currentState
-            ?.pushNamedAndRemoveUntil(RouteNames.authPage, (route) => false);
+        // AppSharedPreference.logout();
+        //
+        // APIService.reInitial();
+        // sl<GlobalKey<NavigatorState>>()
+        //     .currentState
+        //     ?.pushNamedAndRemoveUntil(RouteNames.authPage, (route) => false);
 
         return ' المستخدم الحالي لم يسجل الدخول ' '${response.statusCode}';
 

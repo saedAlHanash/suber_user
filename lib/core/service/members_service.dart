@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
+
 import '../../features/super_user/data/response/member_response.dart';
 import '../util/shared_preferences.dart';
 
@@ -8,12 +10,12 @@ class UsersService {
   final List<String> _usersIds = [];
 
   List<Member> get users {
-
     if (_users.isEmpty) {
       _users = getMembers();
     }
     return _users;
   }
+
   List<String> get usersIds {
     if (_usersIds.isEmpty) {
       getMembers();
@@ -33,11 +35,15 @@ class UsersService {
     final list = AppSharedPreference.getJsonListCart();
     final productList = <Member>[];
     for (var e in list) {
-     final m = Member.fromJson(jsonDecode(e));
-     _usersIds.add(m.id.toString());
+      final m = Member.fromJson(jsonDecode(e));
+      _usersIds.add(m.id.toString());
       productList.add(m);
     }
     return productList;
+  }
+
+  Member? getMemberById(int id) {
+    return getMembers().firstWhereOrNull((e) => e.id == id);
   }
 
   List<String> _convertToListString(List<Member> list) {

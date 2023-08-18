@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_mobile_vision_example/core/util/shared_preferences.dart';
 
 import '../core/injection/injection_container.dart';
+import '../features/auth/bloc/home1_cubit/home1_cubit.dart';
 import '../features/auth/bloc/login_cubit/login_cubit.dart';
 import '../features/auth/bloc/policy_cubit/policy_cubit.dart';
 import '../features/auth/ui/pages/auth_page.dart';
 import '../features/auth/ui/pages/login_page.dart';
 import '../features/auth/ui/pages/policy_page.dart';
+import '../features/qr/bloc/scan_cubit/scan_cubit.dart';
 import '../features/qr/bloc/send_report_cubit/send_report_cubit.dart';
 import '../features/qr/ui/pages/qr_page.dart';
 import '../features/splash_page/splash_page.dart';
@@ -36,6 +38,8 @@ class AppRoutes {
         final providers = [
           BlocProvider(create: (_) => sl<AllSuperUsersCubit>()..getSuperUsers(_)),
           BlocProvider(create: (_) => sl<SendReportCubit>()),
+          BlocProvider(create: (_) => sl<ScanCubit>()),
+          BlocProvider(create: (_) => sl<Home1Cubit>()..getHome1(_)),
         ];
         return MaterialPageRoute(builder: (context) {
           return MultiBlocProvider(

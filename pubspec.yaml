@@ -28,6 +28,7 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
   shared_preferences: any
   collection: any
+  wakelock: ^0.6.2
   #  flutter_qr_bar_scanner: ^3.0.2
   #  qr_code_scanner: ^0.4.0 #not work
 #  flutter_barcode_scanner: ^2.0.0 #not work

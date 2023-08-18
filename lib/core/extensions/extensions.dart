@@ -6,10 +6,8 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:qr_mobile_vision_example/generated/assets.dart';
 
+import '../../features/super_user/data/response/member_response.dart';
 import '../strings/enum_manager.dart';
-
-
-
 
 extension SplitByLength on String {
   List<String> splitByLength1(int length, {bool ignoreEmpty = false}) {
@@ -63,7 +61,6 @@ extension SplitByLength on String {
 }
 
 final oCcy = NumberFormat("#,##0.00", "en_US");
-
 
 extension RealName on Enum {
   String get upperFirst => name.replaceRange(0, 1, name.substring(0, 1).toUpperCase());
@@ -140,7 +137,6 @@ extension NavTripHelper on NavTrip {
   }
 }
 
-
 extension MaxInt on num {
   int get maxInt => 2147483647;
 
@@ -166,13 +162,33 @@ extension MaxInt on num {
   }
 }
 
+extension MemberHealper on Member {
+  MemberSubscriptionState get memberState {
+    if (subscriptions.isEmpty ||
+        !subscriptions.last.isActive ||
+        (subscriptions.last.expirationDate?.isBefore(DateTime.now()) ?? true)) {
+      return MemberSubscriptionState.notSubscribe;
+    }
+
+    return MemberSubscriptionState.active;
+  }
+
+  bool get memberStateBool {
+    if (subscriptions.isEmpty ||
+        !subscriptions.last.isActive ||
+        (subscriptions.last.expirationDate?.isBefore(DateTime.now()) ?? true)) {
+      return false;
+    }
+
+    return true;
+  }
+}
 
 extension CubitStateHelper on CubitStatuses {
   bool get isLoading => this == CubitStatuses.loading;
 
   bool get isDone => this == CubitStatuses.done;
 }
-
 
 extension MapResponse on http.Response {
   dynamic get jsonBody => jsonDecode(body);
