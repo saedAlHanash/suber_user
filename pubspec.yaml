@@ -24,6 +24,7 @@ dependencies:
       url: https://github.com/saedAlHanash/saed_http
 
   flutter_bloc: any
+  dropdown_button2: ^1.9.2
   get_it: any
   internet_connection_checker: ^1.0.0+1
   shared_preferences: any

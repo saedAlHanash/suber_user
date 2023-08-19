@@ -52,10 +52,7 @@ class AuthPage extends StatelessWidget {
                   color: AppColorManager.mainColorDark,
                 ),
                 TextButton(
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    RouteNames.policyScreen,
-                  ),
+                  onPressed: null,
                   child: const DrawableText(
                     text: 'سياسة الخصوصية',
                     underLine: true,

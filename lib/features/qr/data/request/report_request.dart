@@ -1,24 +1,29 @@
-import 'package:qr_mobile_vision_example/core/util/shared_preferences.dart';
 
 class ReportRequest {
   ReportRequest({
+    required this.busId,
+    required this.tripId,
     required this.busMemberId,
-    required this.date,
   });
 
-  num busMemberId;
-  DateTime date;
+  int busId;
+  int tripId;
+  int busMemberId;
+
 
   factory ReportRequest.fromJson(Map<String, dynamic> json) {
     return ReportRequest(
+      busId: json["busId"] ?? 0,
+      tripId: json["tripId"] ?? 0,
       busMemberId: json["busMemberId"] ?? 0,
-      date: DateTime.parse(json["date"] ?? ""),
+
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "busId": AppSharedPreference.getBusId,
+        "busId": busId,
+        "tripId": tripId,
         "busMemberId": busMemberId,
-        "date": date.toIso8601String(),
+
       };
 }

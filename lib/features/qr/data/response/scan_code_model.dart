@@ -1,73 +1,123 @@
-import 'dart:convert';
+import '../../../../core/strings/fix_url.dart';
 
-import 'package:qr_mobile_vision_example/core/extensions/extensions.dart';
-import 'package:qr_mobile_vision_example/core/util/shared_preferences.dart';
+class ScanResponse {
+  ScanResponse({
+    required this.result,
+  });
 
-import '../../../../core/injection/injection_container.dart';
-import '../../../../core/service/members_service.dart';
+  final ScanResult result;
 
-class ScanModel {
-  ScanModel({
+  factory ScanResponse.fromJson(Map<String, dynamic> json) {
+    return ScanResponse(
+      result: ScanResult.fromJson(json["result"] ?? {}),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        "result": result.toJson(),
+      };
+}
+
+class ScanResult {
+  ScanResult({
     required this.id,
-    required this.institutionId,
-    required this.name,
-    required this.image,
-    required this.state,
-    required this.expire,
+    required this.busMember,
+    required this.date,
+    required this.isParticipated,
+    required this.isSubscribed,
+    required this.isQrScaned,
   });
 
   final int id;
-  final num institutionId;
-  final String name;
-  final String image;
-  bool state;
-  final DateTime? expire;
+  final BusMember busMember;
+  final DateTime? date;
+  final bool isParticipated;
+  final bool isSubscribed;
+  final bool isQrScaned;
 
-  factory ScanModel.fromJson(Map<String, dynamic> json) {
-    return ScanModel(
+  factory ScanResult.fromJson(Map<String, dynamic> json) {
+    return ScanResult(
       id: json["id"] ?? 0,
-      institutionId: json["institutionId"] ?? 0,
-      name: json["name"] ?? "",
-      image: json["image"] ?? "",
-      state: json["state"] ?? true,
-      expire: DateTime.tryParse(json["expire"] ?? ""),
+      busMember: BusMember.fromJson(json["busMember"] ?? {}),
+      date: DateTime.tryParse(json["date"] ?? ""),
+      isParticipated: json["isParticipated"] ?? false,
+      isSubscribed: json["isSubscribed"] ?? false,
+      isQrScaned: json["isQrScaned"] ?? false,
     );
   }
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "institutionId": institutionId,
-        "name": name,
-        "image": image,
-        "state": state,
-        "expire": expire?.toIso8601String(),
+        "busMember": busMember.toJson(),
+        "date": date?.toIso8601String(),
+        "isParticipated": isParticipated,
+        "isSubscribed": isSubscribed,
+        "isQrScaned": isQrScaned,
       };
 }
 
-ScanModel? convertFromString(String? code) {
-  if (code == null) return null;
-  final id = int.tryParse(code) ?? 0;
-  if (id == 0) return null;
+class BusMember {
+  BusMember({
+    required this.id,
+    required this.fullName,
+    required this.imageUrl,
+    required this.address,
+    required this.late,
+    required this.longe,
+    required this.userName,
+    required this.password,
+    required this.phoneNo,
+    required this.facility,
+    required this.idNumber,
+    required this.collegeIdNumber,
+    required this.institutionId,
+  });
 
-  try {
-    final member = sl<UsersService>().getMemberById(id);
+  final int id;
+  final String fullName;
+  final String imageUrl;
+  final String address;
+  final num late;
+  final num longe;
+  final String userName;
+  final String password;
+  final String phoneNo;
+  final String facility;
+  final String idNumber;
+  final String collegeIdNumber;
+  final num institutionId;
 
-    if (member == null) return null;
-
-    if (member.institutionId != AppSharedPreference.getInstitutionId) return null;
-
-    var model = ScanModel(
-      id: member.id,
-      institutionId: member.institutionId,
-      name: member.fullName,
-      image: member.imageUrl,
-      state: member.memberStateBool,
-      expire:
-          member.subscriptions.isEmpty ? null : member.subscriptions.last.expirationDate,
+  factory BusMember.fromJson(Map<String, dynamic> json) {
+    return BusMember(
+      id: json["id"] ?? 0,
+      fullName: json["fullName"] ?? "",
+      imageUrl: FixUrl.fixAvatarImage(json["imageUrl"] ?? ""),
+      address: json["address"] ?? "",
+      late: json["late"] ?? 0,
+      longe: json["longe"] ?? 0,
+      userName: json["userName"] ?? "",
+      password: json["password"] ?? "",
+      phoneNo: json["phoneNo"] ?? "",
+      facility: json["facility"] ?? "",
+      idNumber: json["idNumber"] ?? "",
+      collegeIdNumber: json["collegeIdNumber"] ?? "",
+      institutionId: json["institutionId"] ?? 0,
     );
-
-    return model;
-  } catch (e) {
-    return null;
   }
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "fullName": fullName,
+        "imageUrl": imageUrl,
+        "address": address,
+        "late": late,
+        "longe": longe,
+        "userName": userName,
+        "password": password,
+        "phoneNo": phoneNo,
+        "facility": facility,
+        "idNumber": idNumber,
+        "collegeIdNumber": collegeIdNumber,
+        "institutionId": institutionId,
+      };
 }

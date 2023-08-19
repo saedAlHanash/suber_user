@@ -1,8 +1,8 @@
 part of 'send_report_cubit.dart';
 
-class SendReportInitial  {
+class SendReportInitial {
   final CubitStatuses statuses;
-  final bool result;
+  final ScanResult result;
   final String error;
 
   const SendReportInitial({
@@ -12,17 +12,16 @@ class SendReportInitial  {
   });
 
   factory SendReportInitial.initial() {
-    return const SendReportInitial(
-      result: false,
+    return  SendReportInitial(
+      result: ScanResult.fromJson({}),
       error: '',
       statuses: CubitStatuses.init,
     );
   }
 
-
   SendReportInitial copyWith({
     CubitStatuses? statuses,
-    bool? result,
+    ScanResult? result,
     String? error,
   }) {
     return SendReportInitial(
@@ -31,5 +30,4 @@ class SendReportInitial  {
       error: error ?? this.error,
     );
   }
-
 }

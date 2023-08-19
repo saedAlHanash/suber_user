@@ -2,38 +2,37 @@ part of 'login_cubit.dart';
 
 class LoginInitial {
   final CubitStatuses statuses;
-  final SuperUserModel result;
+  final LoginResult result;
   final String error;
-  final String phone;
+  final LoginRequest request;
 
   const LoginInitial({
     required this.statuses,
     required this.result,
     required this.error,
-    required this.phone,
+    required this.request,
   });
 
   factory LoginInitial.initial() {
     return LoginInitial(
-      result: SuperUserModel.fromJson({}),
+      result: LoginResult.fromJson({}),
       error: '',
-      phone: '',
+      request: LoginRequest.fromJson({}),
       statuses: CubitStatuses.init,
     );
   }
 
-
   LoginInitial copyWith({
     CubitStatuses? statuses,
-    SuperUserModel? result,
+    LoginResult? result,
     String? error,
-    String? phone,
+    LoginRequest? request,
   }) {
     return LoginInitial(
       statuses: statuses ?? this.statuses,
       result: result ?? this.result,
       error: error ?? this.error,
-      phone: phone ?? this.phone,
+      request: request ?? this.request,
     );
   }
 }

@@ -177,4 +177,16 @@ class AppSharedPreference {
     if (stringJson == null) return null;
     return Home1Result.fromJson(jsonDecode(stringJson));
   }
+
+  static void cashEmail(String email) {
+    _prefs?.setString('_email', email);
+  }
+
+  static String get getEmail => _prefs?.getString('_email') ?? '';
+
+  static String get myPermissions => _prefs?.getString('_myPermission') ?? '';
+
+  static cashPermissions(String permissions) {
+    _prefs?.setString('_myPermission', permissions);
+  }
 }

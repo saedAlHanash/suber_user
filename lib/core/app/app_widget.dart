@@ -39,6 +39,14 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: appTheam,
+            builder: (context, child) {
+              return MultiBlocProvider(
+                providers: [
+                  BlocProvider(create: (_) => di.sl<Home1Cubit>()..getHome1(_)),
+                ],
+                child: child!,
+              );
+            },
             navigatorKey: di.sl<GlobalKey<NavigatorState>>(),
             onGenerateRoute: AppRoutes.routes,
             // home: Scaffold(appBar: AppBar()),

@@ -7,6 +7,8 @@ import '../../features/auth/bloc/home1_cubit/home1_cubit.dart';
 import '../../features/auth/bloc/login_cubit/login_cubit.dart';
 import '../../features/auth/bloc/policy_cubit/policy_cubit.dart';
 
+import '../../features/buses/bloc/all_buses_cubit/all_buses_cubit.dart';
+import '../../features/buses/bloc/check_active_trip_cubit/check_active_trip_cubit.dart';
 import '../../features/qr/bloc/scan_cubit/scan_cubit.dart';
 import '../../features/qr/bloc/send_report_cubit/send_report_cubit.dart';
 import '../../features/super_user/bloc/all_super_users_cubit/all_super_users_cubit.dart';
@@ -45,6 +47,8 @@ Future<void> init() async {
   sl.registerFactory(() => SendReportCubit());
   sl.registerFactory(() => Home1Cubit());
   sl.registerFactory(() => ScanCubit());
+  sl.registerFactory(() => CheckTripCubit());
+  sl.registerFactory(() => AllBusesCubit());
 
 
 //! External

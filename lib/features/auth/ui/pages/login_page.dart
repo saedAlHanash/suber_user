@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginInitial>(
       listenWhen: (p, c) => c.statuses == CubitStatuses.done,
-      listener: (_, state) => Navigator.pushNamed(context, RouteNames.scanPage),
+      listener: (_, state) => Navigator.pushNamed(context, RouteNames.main),
       child: Scaffold(
         appBar: const AppBarWidget(),
         body: Container(
@@ -54,8 +54,8 @@ class _LoginPageState extends State<LoginPage> {
                   // icon: Assets.icons963,
                   label: AppStringManager.userName,
                   textAlign: TextAlign.right,
-                  initialValue: request.userNameOrEmailAddress,
-                  onChanged: (val) => request.userNameOrEmailAddress = val,
+                  initialValue: request.email,
+                  onChanged: (val) => request.email = val,
                 ),
                 10.0.verticalSpace,
                 MyTextFormWidget(

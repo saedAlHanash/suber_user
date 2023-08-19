@@ -12,25 +12,25 @@ class LoginResponse {
   }
 
   Map<String, dynamic> toJson() => {
-        "result": result.toJson(),
-      };
+    "result": result.toJson(),
+  };
 }
 
 class LoginResult {
   LoginResult({
     required this.accessToken,
     required this.encryptedAccessToken,
-    required this.expireInSeconds,
+    required this.institutionId,
     required this.userId,
-    required this.userTrip,
+    required this.userType,
     required this.accepctPolicy,
   });
 
   final String accessToken;
   final String encryptedAccessToken;
-  final int expireInSeconds;
+  final int institutionId;
   final int userId;
-  final String userTrip;
+  final UserType userType;
   final bool accepctPolicy;
 
   factory LoginResult.initial() {
@@ -41,19 +41,21 @@ class LoginResult {
     return LoginResult(
       accessToken: json["accessToken"] ?? "",
       encryptedAccessToken: json["encryptedAccessToken"] ?? "",
-      expireInSeconds: json["expireInSeconds"] ?? 0,
+      institutionId: json["institutionId"] ?? 0,
       userId: json["userId"] ?? 0,
-      userTrip: json["userTrip"] ?? "",
+      userType: UserType.values[json["userType"] ?? 0],
       accepctPolicy: json["accepctPolicy"] ?? false,
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "accessToken": accessToken,
-        "encryptedAccessToken": encryptedAccessToken,
-        "expireInSeconds": expireInSeconds,
-        "userId": userId,
-        "userTrip": userTrip,
-        "accepctPolicy": accepctPolicy,
-      };
+    "accessToken": accessToken,
+    "encryptedAccessToken": encryptedAccessToken,
+    "institutionId": institutionId,
+    "userId": userId,
+    "userType": userType,
+    "accepctPolicy": accepctPolicy,
+  };
 }
+
+enum UserType { client, driver, admin, institutionAdmin }
