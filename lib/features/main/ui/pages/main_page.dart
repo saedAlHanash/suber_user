@@ -57,6 +57,7 @@ class _MainPageState extends State<MainPage> {
                     url: state.result.imageUrl,
                     height: 120.0.spMin,
                     width: 120.0.spMin,
+                    fit: BoxFit.contain,
                   );
                 },
               ),
