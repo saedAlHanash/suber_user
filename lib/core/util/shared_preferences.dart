@@ -5,6 +5,7 @@ import 'package:qr_mobile_vision_example/features/auth/data/response/home1_respo
 import 'package:qr_mobile_vision_example/features/super_user/data/response/super_users_response.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../api_manager/api_service.dart';
 import '../strings/enum_manager.dart';
 
 class AppSharedPreference {
@@ -41,6 +42,7 @@ class AppSharedPreference {
 
   static cashToken(String token) {
     _prefs?.setString(_token, token);
+    APIService.reInitial();
   }
 
   static cashPhoneNumber(String phone) {

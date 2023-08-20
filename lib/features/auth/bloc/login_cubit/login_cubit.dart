@@ -61,7 +61,9 @@ class LoginCubit extends Cubit<LoginInitial> {
 
       if (!s.contains(superUserAdmin)) {
         NoteMessage.showSnakeBar(
-            message: 'الحساب المدخل لا يمتلك صلاحية مفتش', context: context);
+          message: 'الحساب المدخل لا يمتلك صلاحية مفتش',
+          context: context,
+        );
         AppSharedPreference.clear();
         emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
         return;
