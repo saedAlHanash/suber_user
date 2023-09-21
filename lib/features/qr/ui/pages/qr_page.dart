@@ -20,6 +20,7 @@ import '../../bloc/send_report_cubit/send_report_cubit.dart';
 import '../../data/request/report_request.dart';
 import '../../data/response/scan_code_model.dart';
 import 'package:wakelock/wakelock.dart';
+
 class QrPage extends StatelessWidget {
   const QrPage({Key? key}) : super(key: key);
 
@@ -73,7 +74,7 @@ class _QRViewExampleState extends State<QRViewExample> {
   @override
   void initState() {
     stream.takeWhile((element) {
-      return mounted;
+      return true;
     }).listen(
       (event) {
         if (!mounted) return;
@@ -86,7 +87,6 @@ class _QRViewExampleState extends State<QRViewExample> {
     Wakelock.enable();
     super.initState();
   }
-
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
