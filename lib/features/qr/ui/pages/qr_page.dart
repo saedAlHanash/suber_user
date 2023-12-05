@@ -67,6 +67,8 @@ class _QRViewExampleState extends State<QRViewExample> {
   ///qr controller
   // QRViewController? controller;
 
+  bool dirState = true;
+
   final qrKey = GlobalKey(debugLabel: 'QR');
 
   var stream = Stream.periodic(const Duration(minutes: 60));

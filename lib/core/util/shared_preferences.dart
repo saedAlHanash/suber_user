@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:qr_mobile_vision/qr_camera.dart';
 import 'package:qr_mobile_vision_example/core/extensions/extensions.dart';
 import 'package:qr_mobile_vision_example/features/auth/data/response/home1_response.dart';
 import 'package:qr_mobile_vision_example/features/super_user/data/response/super_users_response.dart';
@@ -22,6 +23,7 @@ class AppSharedPreference {
   static const _wallet = '12';
   static const _cart = '13';
   static const _requests = '14';
+  static const _cameraDirection = '15';
 
   static SharedPreferences? _prefs;
 
@@ -171,6 +173,11 @@ class AppSharedPreference {
     var stringJson = jsonEncode(home1result);
     _prefs?.setString('home', stringJson);
   }
+
+  static CameraDirection get cameraDirection =>
+      (_prefs?.getBool(_cameraDirection) ?? false)
+          ? CameraDirection.BACK
+          : CameraDirection.FRONT;
 
   static Home1Result? getHome() {
     var stringJson = _prefs?.getString('home');

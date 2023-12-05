@@ -37,7 +37,6 @@ class SendReportCubit extends Cubit<SendReportInitial> {
       }
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
     } else {
-      sl<RequestsService>().clear();
       emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }
@@ -53,6 +52,7 @@ class SendReportCubit extends Cubit<SendReportInitial> {
       );
 
       if (response.statusCode == 200) {
+        sl<RequestsService>().clear();
         return Pair(true, null);
       } else {
         return Pair(null, ErrorManager.getApiError(response));
