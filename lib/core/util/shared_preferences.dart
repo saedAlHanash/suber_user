@@ -23,7 +23,7 @@ class AppSharedPreference {
   static const _wallet = '12';
   static const _cart = '13';
   static const _requests = '14';
-  static const _cameraDirection = '15';
+  static const _cameraDirection = '16';
 
   static SharedPreferences? _prefs;
 
@@ -175,9 +175,16 @@ class AppSharedPreference {
   }
 
   static CameraDirection get cameraDirection =>
-      (_prefs?.getBool(_cameraDirection) ?? false)
-          ? CameraDirection.BACK
-          : CameraDirection.FRONT;
+      CameraDirection.values[_prefs?.getInt(_cameraDirection) ?? 0];
+
+  static void switchCameraDirection() {
+    _prefs?.setInt(
+      _cameraDirection,
+      cameraDirection == CameraDirection.FRONT
+          ? CameraDirection.BACK.index
+          : CameraDirection.FRONT.index,
+    );
+  }
 
   static Home1Result? getHome() {
     var stringJson = _prefs?.getString('home');
