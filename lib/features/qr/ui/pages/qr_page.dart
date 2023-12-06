@@ -6,11 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:image_multi_type/round_image_widget.dart';
 import 'package:qr_mobile_vision/qr_camera.dart';
+import 'package:qr_mobile_vision_example/core/api_manager/api_service.dart';
 import 'package:qr_mobile_vision_example/core/extensions/extensions.dart';
 import 'package:qr_mobile_vision_example/core/util/shared_preferences.dart';
 import 'package:qr_mobile_vision_example/core/widgets/images/image_multi_type.dart';
 import 'package:qr_mobile_vision_example/features/qr/bloc/scan_cubit/scan_cubit.dart';
 import 'package:qr_mobile_vision_example/generated/assets.dart';
+import 'package:qr_mobile_vision_example/main.dart';
 
 import '../../../../core/api_manager/command.dart';
 import '../../../../core/injection/injection_container.dart';
@@ -123,7 +125,9 @@ class _QRViewExampleState extends State<QRViewExample> {
           child: Scaffold(
             bottomNavigationBar: InkWell(
               onTap: () {
-                setState(() => AppSharedPreference.switchCameraDirection());
+                  loggerObject.w(memberBox.get(93));
+
+                // setState(() => AppSharedPreference.switchCameraDirection());
               },
               child: Container(
                 height: 60.0.h,
