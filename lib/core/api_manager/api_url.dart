@@ -9,10 +9,11 @@ class GetUrl {
 class PostUrl {
   static var createSuperUsers = 'api/services/app/InstitutionSupervisorsService/Create';
   static const loginUrl = 'api/services/app/InstitutionSupervisorsService/Authenticate';
+
   static const postSingleReport =
-      'api/services/app/InstitutionAttendancesService/AddAtendance';
+      'api/services/app/InstitutionSupervisorCheckService/recordCheck';
   static const postListReport =
-      'api/services/app/InstitutionAttendancesService/SyncAtendances';
+      'api/services/app/InstitutionSupervisorCheckService/syncChecks';
 }
 
 class PutUrl {
