@@ -1,10 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:qr_mobile_vision_example/temp.dart';
 import 'package:qr_mobile_vision_example/core/app/app_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'core/app/app_widget.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 
 import 'core/app/bloc/loading_cubit.dart';
 import 'core/app_theme.dart';
@@ -21,7 +22,7 @@ import '../../core/injection/injection_container.dart' as di;
 import '../../features/qr/ui/pages/qr_page.dart';
 import '../../router/app_router.dart';
 
-
+late Box<String> memberBox;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,8 +33,13 @@ void main() async {
     AppSharedPreference.init(value);
   });
 
-  runApp( MyApp());
+  await Hive.initFlutter();
+
+  memberBox = await Hive.openBox('members');
+
+  runApp(MyApp());
 }
+
 class MyApp extends StatefulWidget {
   const MyApp();
 

@@ -24,6 +24,7 @@ class AppSharedPreference {
   static const _cart = '13';
   static const _requests = '14';
   static const _cameraDirection = '16';
+  static const _latestUpdateMembers = '20';
 
   static SharedPreferences? _prefs;
 
@@ -156,11 +157,15 @@ class AppSharedPreference {
     return _prefs?.getInt('bussId') ?? 0;
   }
 
-  static void updateMembers(List<String> jsonCart) {
-    _prefs?.setStringList(_cart, jsonCart);
+  static void cashLatestUpdateMember(DateTime? date) {
+    _prefs?.setString(
+        _latestUpdateMembers, (date?.toIso8601String() ?? getLatestUpdateMember ?? ''));
   }
 
-  static List<String> getJsonListCart() => _prefs?.getStringList(_cart) ?? <String>[];
+  static String? get getLatestUpdateMember {
+    final data = _prefs?.getString(_latestUpdateMembers) ?? '';
+    return data.isEmpty ? null : data;
+  }
 
   static void updateRequests(List<String> jsonCart) {
     _prefs?.setStringList(_requests, jsonCart);

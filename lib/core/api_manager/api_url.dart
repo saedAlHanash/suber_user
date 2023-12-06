@@ -1,5 +1,6 @@
 class GetUrl {
-  static var superUsers = 'api/services/app/InstitutionMembersService/getMembers';
+
+  static var superUsers = 'api/services/app/InstitutionMembersService/getNewMemberPatch';
   static const getPolicy = 'api/services/app/Settings/Getsettings';
   static const getReport = 'api/services/app/InstitutionAttendancesService/GetAll';
 
@@ -9,10 +10,11 @@ class GetUrl {
 class PostUrl {
   static var createSuperUsers = 'api/services/app/InstitutionSupervisorsService/Create';
   static const loginUrl = 'api/services/app/InstitutionSupervisorsService/Authenticate';
+
   static const postSingleReport =
-      'api/services/app/InstitutionAttendancesService/AddAtendance';
+      'api/services/app/InstitutionSupervisorCheckService/recordCheck';
   static const postListReport =
-      'api/services/app/InstitutionAttendancesService/SyncAtendances';
+      'api/services/app/InstitutionSupervisorCheckService/syncChecks';
 }
 
 class PutUrl {
@@ -23,5 +25,10 @@ class DeleteUrl {
   static var deleteSuperUsers = 'api/services/app/InstitutionSupervisorsService/Delete';
 }
 
-// const baseUrl = '192.168.1.30:44311';
-const baseUrl = 'live.qareeb-maas.com';
+String get baseUrl {
+  // return testUrl;
+  return liveUrl;
+}
+
+const liveUrl = 'live.qareeb-maas.com';
+const testUrl = 'qareeb-api.first-pioneers.com.tr';

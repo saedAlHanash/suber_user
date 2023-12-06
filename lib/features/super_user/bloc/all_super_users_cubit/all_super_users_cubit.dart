@@ -32,15 +32,20 @@ class AllSuperUsersCubit extends Cubit<AllSuperUsersInitial> {
       }
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
     } else {
-      sl<UsersService>().addMembers(pair.first!.items);
-      emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first?.items));
+      await sl<UsersService>().addMembers(pair.first!);
+      loggerObject.wtf(getServerDateNullable);
+      AppSharedPreference.cashLatestUpdateMember(getServerDateNullable);
+      emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }
 
-  Future<Pair<MembersResult?, String?>> _getSuperUsersApi() async {
+  Future<Pair<List<Member>?, String?>> _getSuperUsersApi() async {
     final response = await APIService().getApi(
       url: GetUrl.superUsers,
-      query: state.command.toJson(),
+      query: state.command.toJson()
+        ..addAll(
+          {"LastRecordDate": AppSharedPreference.getLatestUpdateMember},
+        ),
     );
 
     if (response.statusCode == 200) {
