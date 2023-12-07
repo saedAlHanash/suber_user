@@ -125,9 +125,8 @@ class _QRViewExampleState extends State<QRViewExample> {
           child: Scaffold(
             bottomNavigationBar: InkWell(
               onTap: () {
-                  loggerObject.w(memberBox.get(93));
-
-                // setState(() => AppSharedPreference.switchCameraDirection());
+                // loggerObject.w(memberBox.get(93));
+                setState(() => AppSharedPreference.switchCameraDirection());
               },
               child: Container(
                 height: 60.0.h,
