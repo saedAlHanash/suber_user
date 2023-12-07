@@ -17,7 +17,7 @@ class ReportRequest {
   }
 
   Map<String, dynamic> toJson() => {
-        "supervisorId": AppSharedPreference.getBusId,
+        "busId": AppSharedPreference.getBusId,
         "busMemberId": busMemberId,
         "date": date.toIso8601String(),
       };

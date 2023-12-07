@@ -1,5 +1,4 @@
 class GetUrl {
-
   static var superUsers = 'api/services/app/InstitutionMembersService/getNewMemberPatch';
   static const getPolicy = 'api/services/app/Settings/Getsettings';
   static const getReport = 'api/services/app/InstitutionAttendancesService/GetAll';
@@ -12,9 +11,9 @@ class PostUrl {
   static const loginUrl = 'api/services/app/InstitutionSupervisorsService/Authenticate';
 
   static const postSingleReport =
-      'api/services/app/InstitutionSupervisorCheckService/recordCheck';
+      'api/services/app/InstitutionAttendancesService/AddAtendance';
   static const postListReport =
-      'api/services/app/InstitutionSupervisorCheckService/syncChecks';
+      'api/services/app/InstitutionAttendancesService/SyncAtendances';
 }
 
 class PutUrl {

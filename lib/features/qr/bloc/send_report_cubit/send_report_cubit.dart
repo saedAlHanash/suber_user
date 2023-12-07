@@ -48,7 +48,7 @@ class SendReportCubit extends Cubit<SendReportInitial> {
     if (await network.isConnected) {
       final response = await APIService().postApi(
         url: request.length == 1 ? PostUrl.postSingleReport : PostUrl.postListReport,
-        body: (request.length == 1) ? request.first.toJson() : {'checks': c},
+        body: (request.length == 1) ? request.first.toJson() : {'data': c},
       );
 
       if (response.statusCode == 200) {
