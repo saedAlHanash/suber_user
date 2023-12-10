@@ -3,16 +3,22 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_multi_type/image_multi_type.dart';
 import 'package:image_multi_type/round_image_widget.dart';
 import 'package:qr_mobile_vision/qr_camera.dart';
+import 'package:qr_mobile_vision_example/core/api_manager/api_service.dart';
 import 'package:qr_mobile_vision_example/core/extensions/extensions.dart';
+import 'package:qr_mobile_vision_example/core/util/shared_preferences.dart';
+import 'package:qr_mobile_vision_example/core/widgets/images/image_multi_type.dart';
 import 'package:qr_mobile_vision_example/features/qr/bloc/scan_cubit/scan_cubit.dart';
 import 'package:qr_mobile_vision_example/generated/assets.dart';
+import 'package:qr_mobile_vision_example/main.dart';
 
 import '../../../../core/api_manager/command.dart';
 import '../../../../core/injection/injection_container.dart';
 import '../../../../core/service/members_service.dart';
 import '../../../../core/service/report_request_service.dart';
+import '../../../../core/strings/app_color_manager.dart';
 import '../../../../core/util/my_style.dart';
 import '../../../auth/bloc/home1_cubit/home1_cubit.dart';
 import '../../../super_user/bloc/all_super_users_cubit/all_super_users_cubit.dart';
@@ -78,12 +84,12 @@ class _QRViewExampleState extends State<QRViewExample> {
     stream.takeWhile((element) {
       return true;
     }).listen(
-          (event) {
+      (event) {
         if (!mounted) return;
         context.read<AllSuperUsersCubit>().getSuperUsers(
-          context,
-          command: Command.noPagination(),
-        );
+              context,
+              command: Command.noPagination(),
+            );
       },
     );
     Wakelock.enable();
@@ -115,147 +121,50 @@ class _QRViewExampleState extends State<QRViewExample> {
         listener: (context, state) {
           // TODO: implement listener
         },
-        child: WillPopScope(
-          onWillPop: () async => false,
-          child: SafeArea(
-            child: Scaffold(
-              body: Row(
-                children: [
-                  Expanded(child: _onQRViewCreated()),
-                  BlocBuilder<ScanCubit, ScanInitial>(
-                    builder: (context, state) {
-                      return Expanded(
-                        child: Container(
-                          color: state.result.state ? null : Colors.red.withOpacity(0.3),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                flex: 2,
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  child: RoundImageWidget(
-                                    height: 200.0.r,
-                                    width: 200.0.r,
-                                    url: state.result.image.isEmpty
-                                        ? Assets.iconsAlphaLogoBackground
-                                        : state.result.image,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: Container(
-                                  child: Column(
-                                    children: [
-                                      Builder(
-                                        builder: (context) {
-                                          if (state.result.name.isEmpty)
-                                            return DrawableText(
-                                              text: 'QR يرجى مسح رمز ال ',
-                                              size: 40.0.spMin,
-                                              color: Colors.black,
-                                            );
-                                          else
-                                            return Column(
-                                              children: [
-                                                DrawableText(
-                                                  text: 'مرحبا ${state.result.name}',
-                                                  size: 40.0.spMin,
-                                                  fontFamily: FontManager.cairoBold,
-                                                  color: Colors.black,
-                                                ),
-                                                30.0.verticalSpace,
-                                                DrawableText(
-                                                  text: 'شكرا لاستخدامك خدمة قريب ',
-                                                  size: 50.0.spMin,
-                                                  color: Colors.black,
-                                                ),
-                                                30.0.verticalSpace,
-                                                DrawableText(
-                                                  text: 'حالة الاشتراك ',
-                                                  size: 50.0.spMin,
-                                                  drawablePadding: 10.0.w,
-                                                  color: Colors.black,
-                                                  drawableStart: DrawableText(
-                                                    text: state.result.state
-                                                        ? 'مشترك'
-                                                        : 'غير مشترك',
-                                                    size: 60.0.spMin,
-                                                    color: state.result.state
-                                                        ? Colors.green
-                                                        : Colors.red,
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _onQRViewCreated() {
-    return SizedBox.expand(
-        child: Column(
-          children: [
-            Expanded(
-              flex: 2,
+        child: SafeArea(
+          child: Scaffold(
+            bottomNavigationBar: InkWell(
+              onTap: () {
+                  // loggerObject.w(memberBox.get(93));
+                //
+                setState(() => AppSharedPreference.switchCameraDirection());
+              },
               child: Container(
+                height: 60.0.h,
+                color: AppColorManager.mainColor,
                 alignment: Alignment.center,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    RoundImageWidget(
-                      url: Assets.iconsLogo,
-                      height: 200.0.r,
-                      width: 200.0.r,
-                    ),
-                    20.0.horizontalSpace,
-                    BlocBuilder<Home1Cubit, Home1Initial>(
-                      buildWhen: (p, c) => c.statuses.isDone,
-                      builder: (context, state) {
-                        return RoundImageWidget(
-                          url: state.result.imageUrl,
-                          height: 200.0.r,
-                          width: 200.0.r,
-                        );
-                      },
-                    ),
-                  ],
+                padding: EdgeInsets.all(10.0).r,
+                child: DrawableText(
+                  text: 'تبديل الكاميرا',
+                  color: Colors.white,
+                  size: 18.0.sp,
+                  fontFamily: FontManager.cairo,
+                  drawablePadding: 10.0.w,
+                  drawableEnd: ImageMultiType(
+                    url: Icons.flip_camera_ios,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                clipBehavior: Clip.hardEdge,
-                margin: EdgeInsets.all(15.0).r,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadiusDirectional.circular(20.0.r),
-                ),
-                child: Transform.rotate(
-                  angle: 3.14,
+            body: Column(
+              children: [
+                10.0.verticalSpace,
+                logosBuilder(),
+                Container(
+                  height: 300.0.r,
+                  width: 1.0.sw,
+                  clipBehavior: Clip.hardEdge,
+                  margin: EdgeInsets.all(15.0).r,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadiusDirectional.circular(20.0.r),
+                  ),
                   child: QrCamera(
                     onError: (context, error) => Text(
                       error.toString(),
                       style: TextStyle(color: Colors.red),
                     ),
-                    cameraDirection: CameraDirection.FRONT,
+                    cameraDirection: AppSharedPreference.cameraDirection,
                     qrCodeCallback: (code) {
                       if (waiting) return;
 
@@ -286,10 +195,111 @@ class _QRViewExampleState extends State<QRViewExample> {
                     },
                   ),
                 ),
-              ),
-            )
-          ],
-        ));
+                30.0.verticalSpace,
+                BlocBuilder<ScanCubit, ScanInitial>(
+                  builder: (context, state) {
+                    return Container(
+                      color: state.result.state ? null : Colors.red.withOpacity(0.3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            child: RoundImageWidget(
+                              height: 150.0.r,
+                              width: 150.0.r,
+                              url: state.result.image.isEmpty
+                                  ? Assets.iconsAlphaLogoBackground
+                                  : state.result.image,
+                            ),
+                          ),
+                          Container(
+                            child: Column(
+                              children: [
+                                Builder(
+                                  builder: (context) {
+                                    if (state.result.name.isEmpty)
+                                      return DrawableText(
+                                        text: 'QR يرجى مسح رمز ال ',
+                                        size: 18.0.spMin,
+                                        color: Colors.black,
+                                      );
+                                    else
+                                      return Column(
+                                        children: [
+                                          DrawableText(
+                                            text: 'مرحبا ${state.result.name}',
+                                            size: 18.0.spMin,
+                                            fontFamily: FontManager.cairoBold,
+                                            color: Colors.black,
+                                          ),
+                                          30.0.verticalSpace,
+                                          DrawableText(
+                                            text: 'شكرا لاستخدامك خدمة قريب ',
+                                            size: 20.0.spMin,
+                                            color: Colors.black,
+                                          ),
+                                          30.0.verticalSpace,
+                                          DrawableText(
+                                            text: 'حالة الاشتراك ',
+                                            size: 16.0.spMin,
+                                            drawablePadding: 10.0.w,
+                                            color: Colors.black,
+                                            drawableStart: DrawableText(
+                                              text: state.result.state
+                                                  ? 'مشترك'
+                                                  : 'غير مشترك',
+                                              size: 24.0.spMin,
+                                              color: state.result.state
+                                                  ? Colors.green
+                                                  : Colors.red,
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget logosBuilder() {
+    return SizedBox(
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          RoundImageWidget(
+            url: Assets.iconsLogo,
+            height: 100.0.r,
+            width: 100.0.r,
+          ),
+          20.0.horizontalSpace,
+          BlocBuilder<Home1Cubit, Home1Initial>(
+            buildWhen: (p, c) => c.statuses.isDone,
+            builder: (context, state) {
+              return RoundImageWidget(
+                url: state.result.imageUrl,
+                height: 100.0.r,
+                width: 100.0.r,
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   final audioPlayer = AudioPlayer();
@@ -300,7 +310,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     if (isWarning) {
       Future.delayed(
         Duration(seconds: 2),
-            () => audioPlayer.play(AssetSource('sounds/warning_beeping.mp3')),
+        () => audioPlayer.play(AssetSource('sounds/warning_beeping.mp3')),
       );
     }
   }
