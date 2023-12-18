@@ -115,7 +115,7 @@ class Member {
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
       fullName: json["fullName"] ?? "",
-      imageUrl: FixUrl.fixAvatarImage(json["imageUrl"] ?? ""),
+      imageUrl: FixUrl.fixAvatarImage(json["imageUrl"]),
       address: json["address"] ?? "",
       late: json["late"] ?? 0,
       longe: json["longe"] ?? 0,
