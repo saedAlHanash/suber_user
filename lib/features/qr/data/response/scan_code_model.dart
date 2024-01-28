@@ -52,7 +52,7 @@ ScanModel? convertFromString(String? code) {
   try {
     final member = sl<UsersService>().getMemberById(id);
 
-    if (member == null) return null;
+    if (member == null) return ScanModel.fromJson({});
 
     if (member.institutionId != AppSharedPreference.getInstitutionId) return null;
 

@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   drawable_text:
     git:
       url: https://github.com/saedAlHanash/drawable_text
@@ -23,6 +24,8 @@ dependencies:
     git:
       url: https://github.com/saedAlHanash/saed_http
 
+  hive: ^2.2.3
+  hive_flutter: any
   flutter_bloc: any
   get_it: any
   internet_connection_checker: ^1.0.0+1
