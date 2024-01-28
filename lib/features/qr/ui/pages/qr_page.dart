@@ -6,13 +6,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:image_multi_type/round_image_widget.dart';
 import 'package:qr_mobile_vision/qr_camera.dart';
-import 'package:qr_mobile_vision_example/core/api_manager/api_service.dart';
 import 'package:qr_mobile_vision_example/core/extensions/extensions.dart';
+import 'package:qr_mobile_vision_example/core/util/note_message.dart';
 import 'package:qr_mobile_vision_example/core/util/shared_preferences.dart';
-import 'package:qr_mobile_vision_example/core/widgets/images/image_multi_type.dart';
 import 'package:qr_mobile_vision_example/features/qr/bloc/scan_cubit/scan_cubit.dart';
 import 'package:qr_mobile_vision_example/generated/assets.dart';
-import 'package:qr_mobile_vision_example/main.dart';
+import 'package:wakelock/wakelock.dart';
 
 import '../../../../core/api_manager/command.dart';
 import '../../../../core/injection/injection_container.dart';
@@ -25,7 +24,6 @@ import '../../../super_user/bloc/all_super_users_cubit/all_super_users_cubit.dar
 import '../../bloc/send_report_cubit/send_report_cubit.dart';
 import '../../data/request/report_request.dart';
 import '../../data/response/scan_code_model.dart';
-import 'package:wakelock/wakelock.dart';
 
 class QrPage extends StatelessWidget {
   const QrPage({Key? key}) : super(key: key);
@@ -125,7 +123,7 @@ class _QRViewExampleState extends State<QRViewExample> {
           child: Scaffold(
             bottomNavigationBar: InkWell(
               onTap: () {
-                  // loggerObject.w(memberBox.get(93));
+                // loggerObject.w(memberBox.get(93));
                 //
                 setState(() => AppSharedPreference.switchCameraDirection());
               },
@@ -175,6 +173,32 @@ class _QRViewExampleState extends State<QRViewExample> {
                       Future.delayed(Duration(seconds: 3), () => waiting = false);
 
                       if (model == null) return;
+                      if (model.id == 0) {
+                        context.read<AllSuperUsersCubit>().getSuperUsers(
+                          context,
+                          command: Command.noPagination(),
+                        );
+
+                        NoteMessage.showMyDialog(
+                          context,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              DrawableText(
+                                text: 'يرجى الانتظار \n جاري تحديث البيانات',
+                                color: Colors.black,
+                                size: 24.0.sp,
+                                textAlign: TextAlign.center,
+                              ),
+                              20.0.verticalSpace,
+                              CountdownWidget(),
+                              20.0.verticalSpace,
+                            ],
+                          ),
+                        );
+
+                        return;
+                      }
 
                       context.read<ScanCubit>().initCode(model: model);
 

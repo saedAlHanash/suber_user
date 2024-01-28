@@ -42,8 +42,8 @@ Future<void> init() async {
   sl.registerFactory(() => LoadingCubit());
   sl.registerFactory(() => AllSuperUsersCubit());
   //endregion
-  sl.registerFactory(() => SendReportCubit());
   sl.registerFactory(() => Home1Cubit());
+  sl.registerFactory(() => SendReportCubit());
   sl.registerFactory(() => ScanCubit());
 
 
