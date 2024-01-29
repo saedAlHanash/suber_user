@@ -158,8 +158,8 @@ class AppSharedPreference {
   }
 
   static void cashLatestUpdateMember(DateTime? date) {
-    _prefs?.setString(
-        _latestUpdateMembers, (date?.toIso8601String() ?? getLatestUpdateMember ?? ''));
+    _prefs?.setString(_latestUpdateMembers,
+        (date?.toLocal().toIso8601String() ?? getLatestUpdateMember ?? ''));
   }
 
   static String? get getLatestUpdateMember {

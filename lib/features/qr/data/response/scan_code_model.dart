@@ -46,13 +46,14 @@ class ScanModel {
 
 ScanModel? convertFromString(String? code) {
   if (code == null) return null;
+
   final id = int.tryParse(code) ?? 0;
   if (id == 0) return null;
 
   try {
     final member = sl<UsersService>().getMemberById(id);
 
-    if (member == null) return null;
+    if (member == null)return ScanModel.fromJson({});
 
     if (member.institutionId != AppSharedPreference.getInstitutionId) return null;
 

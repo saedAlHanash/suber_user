@@ -1,0 +1,26 @@
+{
+  "result": null,
+  "targetUrl": null,
+  "success": false,
+  "error": {
+    "code": 0,
+    "message": "طلبك غير صحيح!",
+    "details": "تم اكتشاف الأخطاء التالية أثناء التحقق من صحة الطلب.\n - The value '33.52286287389912' is not valid for late.\n - The value '36.30449511439299' is not valid for Longe.\n",
+    "validationErrors": [
+      {
+        "message": "The value '33.52286287389912' is not valid for late.",
+        "members": [
+          "late"
+        ]
+      },
+      {
+        "message": "The value '36.30449511439299' is not valid for Longe.",
+        "members": [
+          "longe"
+        ]
+      }
+    ]
+  },
+  "unAuthorizedRequest": false,
+  "__abp": true
+}
