@@ -31,6 +31,7 @@ var loggerObject = Logger(
 DateTime? _serverDate;
 
 DateTime get getServerDate => _serverDate ?? DateTime.now();
+DateTime? get getServerDateNullable => _serverDate ;
 
 DateTime getDateTimeFromHeaders(http.Response response) {
   final headers = response.headers;
@@ -38,8 +39,10 @@ DateTime getDateTimeFromHeaders(http.Response response) {
   if (headers.containsKey('date')) {
     final dateString = headers['date']!;
 
+    loggerObject.e(dateString);
     final dateTime = parseGMTDate(dateString);
-    return dateTime.addFromNow();
+    return dateTime;
+
   } else {
     return DateTime.now();
   }
@@ -108,6 +111,7 @@ class APIService {
           onTimeout: () => http.Response('connectionTimeOut', 481),
         );
 
+    _serverDate = getDateTimeFromHeaders(response);
     logResponse(url, response);
     return response;
   }

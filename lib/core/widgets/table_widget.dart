@@ -1,5 +1,6 @@
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:image_multi_type/image_multi_type.dart';
 import 'package:qr_mobile_vision_example/core/strings/app_color_manager.dart';
 import 'package:qr_mobile_vision_example/core/widgets/my_card_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -14,7 +14,6 @@ import '../../../../core/injection/injection_container.dart';
 import '../../../../core/service/members_service.dart';
 import '../../../../core/service/report_request_service.dart';
 import '../../../../core/util/my_style.dart';
-import '../../../../core/util/note_message.dart';
 import '../../../auth/bloc/home1_cubit/home1_cubit.dart';
 import '../../../super_user/bloc/all_super_users_cubit/all_super_users_cubit.dart';
 import '../../bloc/send_report_cubit/send_report_cubit.dart';
@@ -79,12 +78,12 @@ class _QRViewExampleState extends State<QRViewExample> {
     stream.takeWhile((element) {
       return true;
     }).listen(
-      (event) {
+          (event) {
         if (!mounted) return;
         context.read<AllSuperUsersCubit>().getSuperUsers(
-              context,
-              command: Command.noPagination(),
-            );
+          context,
+          command: Command.noPagination(),
+        );
       },
     );
     Wakelock.enable();
@@ -213,110 +212,84 @@ class _QRViewExampleState extends State<QRViewExample> {
   Widget _onQRViewCreated() {
     return SizedBox.expand(
         child: Column(
-      children: [
-        Expanded(
-          flex: 2,
-          child: Container(
-            alignment: Alignment.center,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                RoundImageWidget(
-                  url: Assets.iconsLogo,
-                  height: 200.0.r,
-                  width: 200.0.r,
-                ),
-                20.0.horizontalSpace,
-                BlocBuilder<Home1Cubit, Home1Initial>(
-                  buildWhen: (p, c) => c.statuses.isDone,
-                  builder: (context, state) {
-                    return RoundImageWidget(
-                      url: state.result.imageUrl,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                alignment: Alignment.center,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    RoundImageWidget(
+                      url: Assets.iconsLogo,
                       height: 200.0.r,
                       width: 200.0.r,
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 3,
-          child: Container(
-            clipBehavior: Clip.hardEdge,
-            margin: EdgeInsets.all(15.0).r,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadiusDirectional.circular(20.0.r),
-            ),
-            child: Transform.rotate(
-              angle: 3.14,
-              child: QrCamera(
-                onError: (context, error) => Text(
-                  error.toString(),
-                  style: TextStyle(color: Colors.red),
-                ),
-                cameraDirection: CameraDirection.FRONT,
-                qrCodeCallback: (code) {
-                  if (waiting) return;
-
-                  waiting = true;
-
-                  final model = convertFromString(code);
-
-                  Future.delayed(Duration(seconds: 3), () => waiting = false);
-
-                  if (model == null) return;
-                  if (model.id == 0) {
-                    context.read<AllSuperUsersCubit>().getSuperUsers(
-                      context,
-                      command: Command.noPagination(),
-                    );
-
-                    NoteMessage.showMyDialog(
-                      context,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          DrawableText(
-                            text: 'يرجى الانتظار \n جاري تحديث البيانات',
-                            color: Colors.black,
-                            size: 24.0.sp,
-                            textAlign: TextAlign.center,
-                          ),
-                          20.0.verticalSpace,
-                          CountdownWidget(),
-                          20.0.verticalSpace,
-                        ],
-                      ),
-                    );
-
-                    return;
-                  }
-
-                  context.read<ScanCubit>().initCode(model: model);
-
-                  sl<RequestsService>().addToRequests(
-                    ReportRequest(
-                      busMemberId: model.id,
-                      date: DateTime.now(),
                     ),
-                  );
-
-                  context.read<SendReportCubit>().sendReport(context);
-
-                  if (model.state) {
-                    playAudio();
-                  } else {
-                    playAudio(isWarning: true);
-                  }
-                },
+                    20.0.horizontalSpace,
+                    BlocBuilder<Home1Cubit, Home1Initial>(
+                      buildWhen: (p, c) => c.statuses.isDone,
+                      builder: (context, state) {
+                        return RoundImageWidget(
+                          url: state.result.imageUrl,
+                          height: 200.0.r,
+                          width: 200.0.r,
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        )
-      ],
-    ));
+            Expanded(
+              flex: 3,
+              child: Container(
+                clipBehavior: Clip.hardEdge,
+                margin: EdgeInsets.all(15.0).r,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadiusDirectional.circular(20.0.r),
+                ),
+                child: Transform.rotate(
+                  angle: 3.14,
+                  child: QrCamera(
+                    onError: (context, error) => Text(
+                      error.toString(),
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    cameraDirection: CameraDirection.FRONT,
+                    qrCodeCallback: (code) {
+                      if (waiting) return;
+
+                      waiting = true;
+
+                      final model = convertFromString(code);
+
+                      Future.delayed(Duration(seconds: 3), () => waiting = false);
+
+                      if (model == null) return;
+
+                      context.read<ScanCubit>().initCode(model: model);
+
+                      sl<RequestsService>().addToRequests(
+                        ReportRequest(
+                          busMemberId: model.id,
+                          date: DateTime.now(),
+                        ),
+                      );
+
+                      context.read<SendReportCubit>().sendReport(context);
+
+                      if (model.state) {
+                        playAudio();
+                      } else {
+                        playAudio(isWarning: true);
+                      }
+                    },
+                  ),
+                ),
+              ),
+            )
+          ],
+        ));
   }
 
   final audioPlayer = AudioPlayer();
@@ -327,7 +300,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     if (isWarning) {
       Future.delayed(
         Duration(seconds: 2),
-        () => audioPlayer.play(AssetSource('sounds/warning_beeping.mp3')),
+            () => audioPlayer.play(AssetSource('sounds/warning_beeping.mp3')),
       );
     }
   }
