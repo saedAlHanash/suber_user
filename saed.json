@@ -1,26 +1,30 @@
 {
-  "result": null,
-  "targetUrl": null,
-  "success": false,
-  "error": {
-    "code": 0,
-    "message": "طلبك غير صحيح!",
-    "details": "تم اكتشاف الأخطاء التالية أثناء التحقق من صحة الطلب.\n - The value '33.52286287389912' is not valid for late.\n - The value '36.30449511439299' is not valid for Longe.\n",
-    "validationErrors": [
-      {
-        "message": "The value '33.52286287389912' is not valid for late.",
-        "members": [
-          "late"
-        ]
-      },
-      {
-        "message": "The value '36.30449511439299' is not valid for Longe.",
-        "members": [
-          "longe"
-        ]
-      }
-    ]
+  "result": {
+    "fullName": "المشرف أحمد جاويش",
+    "phone": "963321456789",
+    "userName": "A1",
+    "password": "123qwe",
+    "busId": 99,
+    "bus": {
+      "ime": "354778343136308",
+      "driverName": "باص أحمد",
+      "driverPhone": "963124414125",
+      "busModel": "كيا",
+      "busColor": "ابيض",
+      "busNumber": "231532165",
+      "busName": null,
+      "seatsNumber": 12,
+      "institutionId": 4,
+      "institution": null,
+      "supervisors": null,
+      "id": 99
+    },
+    "institutionId": 4,
+    "id": 39
   },
+  "targetUrl": null,
+  "success": true,
+  "error": null,
   "unAuthorizedRequest": false,
   "__abp": true
 }

@@ -35,7 +35,7 @@ class LoginCubit extends Cubit<LoginInitial> {
 
       emit(state.copyWith(statuses: CubitStatuses.error, error: pair.second));
     } else {
-      AppSharedPreference.cashUser(pair.first);
+     await AppSharedPreference.cashUser(pair.first);
       emit(state.copyWith(statuses: CubitStatuses.done, result: pair.first));
     }
   }

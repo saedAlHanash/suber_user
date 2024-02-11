@@ -137,11 +137,12 @@ class AppSharedPreference {
     return int.parse(_prefs?.getString('_institutionId') ?? '0');
   }
 
-  static void cashUser(SuperUserModel? first) {
+  static Future<void> cashUser(SuperUserModel? first) async {
     if (first == null) return;
-    cashBusId(first.busId);
-    cashInstitutionId(first.institutionId);
-    _prefs?.setString(_profileInfo, jsonEncode(first));
+    await cashBusId(first.busId);
+    await cashInstitutionId(first.institutionId);
+    await cashMyId(first.id);
+    await _prefs?.setString(_profileInfo, jsonEncode(first));
   }
 
   static SuperUserModel get getUser {
@@ -149,7 +150,7 @@ class AppSharedPreference {
     return SuperUserModel.fromJson(jsonDecode(json));
   }
 
-  static void cashBusId(int busId) {
+  static Future<void> cashBusId(int busId) async {
     _prefs?.setInt('bussId', busId);
   }
 
