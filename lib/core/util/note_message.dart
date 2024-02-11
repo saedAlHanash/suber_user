@@ -1,17 +1,62 @@
+import 'dart:async';
+
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_multi_type/image_multi_type.dart';
 import 'package:qr_mobile_vision_example/core/strings/app_color_manager.dart';
 import 'package:qr_mobile_vision_example/core/strings/app_string_manager.dart';
 import 'package:qr_mobile_vision_example/core/util/checker_helper.dart';
 import 'package:qr_mobile_vision_example/core/widgets/my_button.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../generated/assets.dart';
-import '../../router/app_router.dart';
-import '../widgets/images/image_multi_type.dart';
 import '../widgets/my_text_form_widget.dart';
 import '../widgets/snake_bar_widget.dart';
+
+class CountdownWidget extends StatefulWidget {
+  @override
+  _CountdownWidgetState createState() => _CountdownWidgetState();
+}
+
+class _CountdownWidgetState extends State<CountdownWidget> {
+  int seconds = 10;
+  Timer? timer;
+
+  @override
+  void initState() {
+    super.initState();
+    startCountdown();
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
+
+  void startCountdown() {
+    timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
+      setState(() {
+        if (seconds > 0) {
+          seconds--;
+        } else {
+          Navigator.pop(context);
+          timer.cancel();
+        }
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'يتم التحميل: $seconds ثانية متبقي',
+        style: TextStyle(fontSize: 24),
+      ),
+    );
+  }
+}
 
 class NoteMessage {
   static void showSuccessSnackBar(
