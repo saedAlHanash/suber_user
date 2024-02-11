@@ -14,6 +14,7 @@ import '../../../../core/injection/injection_container.dart';
 import '../../../../core/service/members_service.dart';
 import '../../../../core/service/report_request_service.dart';
 import '../../../../core/util/my_style.dart';
+import '../../../../core/util/note_message.dart';
 import '../../../auth/bloc/home1_cubit/home1_cubit.dart';
 import '../../../super_user/bloc/all_super_users_cubit/all_super_users_cubit.dart';
 import '../../bloc/send_report_cubit/send_report_cubit.dart';
@@ -266,6 +267,32 @@ class _QRViewExampleState extends State<QRViewExample> {
                       Future.delayed(Duration(seconds: 3), () => waiting = false);
 
                       if (model == null) return;
+                      if (model.id == 0) {
+                        context.read<AllSuperUsersCubit>().getSuperUsers(
+                          context,
+                          command: Command.noPagination(),
+                        );
+
+                        NoteMessage.showMyDialog(
+                          context,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              DrawableText(
+                                text: 'يرجى الانتظار \n جاري تحديث البيانات',
+                                color: Colors.black,
+                                size: 24.0.sp,
+                                textAlign: TextAlign.center,
+                              ),
+                              20.0.verticalSpace,
+                              CountdownWidget(),
+                              20.0.verticalSpace,
+                            ],
+                          ),
+                        );
+
+                        return;
+                      }
 
                       context.read<ScanCubit>().initCode(model: model);
 
