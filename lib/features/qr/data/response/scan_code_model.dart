@@ -35,13 +35,13 @@ class ScanModel {
   }
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "institutionId": institutionId,
-        "name": name,
-        "image": image,
-        "state": state,
-        "expire": expire?.toIso8601String(),
-      };
+    "id": id,
+    "institutionId": institutionId,
+    "name": name,
+    "image": image,
+    "state": state,
+    "expire": expire?.toIso8601String(),
+  };
 }
 
 ScanModel? convertFromString(String? code) {
@@ -54,6 +54,7 @@ ScanModel? convertFromString(String? code) {
 
     if (member == null) return ScanModel.fromJson({});
 
+
     if (member.institutionId != AppSharedPreference.getInstitutionId) return null;
 
     var model = ScanModel(
@@ -63,7 +64,7 @@ ScanModel? convertFromString(String? code) {
       image: member.imageUrl,
       state: member.memberStateBool,
       expire:
-          member.subscriptions.isEmpty ? null : member.subscriptions.last.expirationDate,
+      member.subscriptions.isEmpty ? null : member.subscriptions.last.expirationDate,
     );
 
     return model;

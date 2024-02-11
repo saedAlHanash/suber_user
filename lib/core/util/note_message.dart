@@ -147,7 +147,6 @@ class NoteMessage {
     return r;
   }
 
-
   static Future<String?> insertPhoneNumber(
     BuildContext context,
   ) async {
