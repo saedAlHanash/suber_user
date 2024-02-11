@@ -159,14 +159,17 @@ class AppSharedPreference {
 
   static void cashLatestUpdateMember(DateTime? date) {
     _prefs?.setString(
-        _latestUpdateMembers, (date?.toIso8601String() ?? getLatestUpdateMember ?? ''));
+      _latestUpdateMembers,
+      (date?.toLocal().add(Duration(days: -1)).toIso8601String() ??
+          getLatestUpdateMember ??
+          ''),
+    );
   }
 
   static String? get getLatestUpdateMember {
     final data = _prefs?.getString(_latestUpdateMembers) ?? '';
-    return data.isEmpty ? null : data;
+    return (data.isEmpty ? null : data)?.replaceAll('z', '').replaceAll('Z', '');
   }
-
   static void updateRequests(List<String> jsonCart) {
     _prefs?.setStringList(_requests, jsonCart);
   }

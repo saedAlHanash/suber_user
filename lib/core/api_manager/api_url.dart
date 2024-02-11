@@ -25,8 +25,8 @@ class DeleteUrl {
 }
 
 String get baseUrl {
-  return testUrl;
-  // return liveUrl;
+  // return testUrl;
+  return liveUrl;
 }
 
 const liveUrl = 'live.qareeb-maas.com';
