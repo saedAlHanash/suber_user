@@ -211,10 +211,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_bloc
-      sha256: e74efb89ee6945bcbce74a5b3a5a3376b088e5f21f55c263fc38cbdc6237faae
+      sha256: f0ecf6e6eb955193ca60af2d5ca39565a86b8a142452c5b24d96fb477428f4d2
       url: "https://pub.dev"
     source: hosted
-    version: "8.1.3"
+    version: "8.1.5"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -235,10 +235,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_screenutil
-      sha256: "1b61f8c4cbf965104b6ca7160880ff1af6755aad7fec70b58444245132453745"
+      sha256: "8cf100b8e4973dc570b6415a2090b0bfaa8756ad333db46939efc3e774ee100d"
       url: "https://pub.dev"
     source: hosted
-    version: "5.8.4"
+    version: "5.9.0"
   flutter_svg:
     dependency: transitive
     description:
@@ -269,10 +269,10 @@ packages:
     dependency: "direct main"
     description:
       name: get_it
-      sha256: "529de303c739fca98cd7ece5fca500d8ff89649f1bb4b4e94fb20954abcd7468"
+      sha256: e6017ce7fdeaf218dc51a100344d8cb70134b80e28b760f8bb23c242437bafd7
       url: "https://pub.dev"
     source: hosted
-    version: "7.6.0"
+    version: "7.6.7"
   hive:
     dependency: "direct main"
     description:
@@ -390,10 +390,10 @@ packages:
     dependency: transitive
     description:
       name: native_device_orientation
-      sha256: "7d2fa1a1420b7b4ac3317760ffd063b86704679fb4f1796644581da4a6356ccc"
+      sha256: "744a03030fad5a332a54833cd34f1e2ee51ae9acf477b4ef85bacc8823af9937"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.4"
+    version: "1.2.1"
   nested:
     dependency: transitive
     description:
@@ -510,10 +510,10 @@ packages:
     dependency: "direct main"
     description:
       name: qr_mobile_vision
-      sha256: bd17a9eb6227a0072fc1a9b0eaf8fc791560188417740f254fee0b9335239b1d
+      sha256: "346fffa7067d234af75debb0716152657c11346706ce57811fa85a9c6f0fbfe0"
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.3"
+    version: "4.1.4"
   rxdart:
     dependency: transitive
     description:
@@ -543,10 +543,10 @@ packages:
     dependency: "direct main"
     description:
       name: shared_preferences
-      sha256: "0344316c947ffeb3a529eac929e1978fcd37c26be4e8468628bac399365a3ca1"
+      sha256: "81429e4481e1ccfb51ede496e916348668fd0921627779233bd24cc3ff6abd02"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0"
+    version: "2.2.2"
   shared_preferences_android:
     dependency: transitive
     description:
