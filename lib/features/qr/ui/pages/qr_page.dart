@@ -10,6 +10,8 @@ import 'package:qr_mobile_vision_example/core/api_manager/api_service.dart';
 import 'package:qr_mobile_vision_example/core/extensions/extensions.dart';
 import 'package:qr_mobile_vision_example/core/util/shared_preferences.dart';
 import 'package:qr_mobile_vision_example/core/widgets/images/image_multi_type.dart';
+import 'package:qr_mobile_vision_example/core/widgets/spinner_widget.dart';
+import 'package:qr_mobile_vision_example/features/buses/bloc/buses_cubit/buses_cubit.dart';
 import 'package:qr_mobile_vision_example/features/qr/bloc/scan_cubit/scan_cubit.dart';
 import 'package:qr_mobile_vision_example/generated/assets.dart';
 import 'package:qr_mobile_vision_example/main.dart';
@@ -138,7 +140,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                   text: 'تبديل الكاميرا',
                   color: Colors.white,
                   size: 18.0.sp,
-                  fontFamily: FontManager.cairo,
+                  fontFamily: FontManager.cairo.name,
                   drawablePadding: 10.0.w,
                   drawableEnd: ImageMultiType(
                     url: Icons.flip_camera_ios,
@@ -150,6 +152,13 @@ class _QRViewExampleState extends State<QRViewExample> {
             body: Column(
               children: [
                 10.0.verticalSpace,
+                BlocBuilder<BusesCubit, BusesInitial>(
+                  builder: (context, state) {
+                    return SpinnerWidget(
+                      items: state.getSpinnerItems(),
+                    );
+                  },
+                ),
                 logosBuilder(),
                 Container(
                   height: 300.0.r,
@@ -257,7 +266,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                                           DrawableText(
                                             text: 'مرحبا ${state.result.name}',
                                             size: 18.0.spMin,
-                                            fontFamily: FontManager.cairoBold,
+                                            fontFamily: FontManager.cairoBold.name,
                                             color: Colors.black,
                                           ),
                                           30.0.verticalSpace,

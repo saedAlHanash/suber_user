@@ -31,7 +31,7 @@ class MyButton extends StatelessWidget {
         DrawableText(
           text: text,
           color: textColor ?? AppColorManager.whit,
-          fontFamily: FontManager.cairoBold,
+          fontFamily: FontManager.cairoBold.name,
         );
 
     var widget = InkWell(

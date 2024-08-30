@@ -6,6 +6,7 @@ import 'package:qr_mobile_vision_example/core/strings/app_color_manager.dart';
 
 import '../../core/injection/injection_container.dart' as di;
 import '../../features/auth/bloc/home1_cubit/home1_cubit.dart';
+import '../../features/buses/bloc/buses_cubit/buses_cubit.dart';
 import '../../features/qr/ui/pages/qr_page.dart';
 import '../../router/app_router.dart';
 import '../app_theme.dart';
@@ -24,6 +25,7 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => di.sl<LoadingCubit>()),
+        BlocProvider(create: (_) => di.sl<BusesCubit>()..getBuses()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(412, 870),

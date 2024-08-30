@@ -28,7 +28,7 @@ class ItemInfo extends StatelessWidget {
         if (widget == null)
           DrawableText(
             text: info ?? '',
-            fontFamily: FontManager.cairoBold,
+            fontFamily: FontManager.cairoBold.name,
             color: AppColorManager.mainColor,
             padding: const EdgeInsets.only(right: 10.0, bottom: 25.0, top: 7.0).r,
           ),
@@ -64,7 +64,7 @@ class ItemInfoInLine extends StatelessWidget {
       drawableEnd: widget == null
           ? DrawableText(
               text: info ?? '',
-              fontFamily: FontManager.cairoBold,
+              fontFamily: FontManager.cairoBold.name,
               color: AppColorManager.mainColor,
             )
           : widget!,

@@ -53,6 +53,9 @@ class AppSharedPreference {
   static cashMyId(int id) {
     _prefs?.setInt(_myId, id);
   }
+  static int get getMyId {
+    return _prefs?.getInt(_myId) ?? 0;
+  }
 
   static String getToken() {
     return _prefs?.getString(_token) ?? '';
@@ -64,9 +67,6 @@ class AppSharedPreference {
     return _prefs?.getString(_phoneNumber) ?? '';
   }
 
-  static int get getMyId {
-    return _prefs?.getInt(_myId) ?? 0;
-  }
 
   static cashStateScreen(StateScreen appState) {
     _prefs?.setInt(_toScreen, appState.index);

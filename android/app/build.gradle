@@ -37,8 +37,8 @@ android {
 
 
     defaultConfig {
-        applicationId "com.github.rmtmckenzie.qrmobilevisionexample"
-        minSdkVersion 19
+        applicationId "com.qareeb.supervisor_checker"
+        minSdkVersion flutter.minSdkVersion
         targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

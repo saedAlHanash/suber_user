@@ -67,7 +67,7 @@ class _SaedState extends State<Saed> {
                   child: DrawableText(
                     text: '-',
                     size: 40.0.sp,
-                    fontFamily: FontManager.cairoBold,
+                    fontFamily: FontManager.cairoBold.name,
                     color: Colors.black,
                   ),
                 ),
@@ -83,7 +83,7 @@ class _SaedState extends State<Saed> {
                   child: DrawableText(
                     text: '+',
                     size: 40.0.sp,
-                    fontFamily: FontManager.cairoBold,
+                    fontFamily: FontManager.cairoBold.name,
                     color: Colors.black,
                   ),
                 ),

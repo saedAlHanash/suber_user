@@ -59,9 +59,9 @@ class AuthPage extends StatelessWidget {
                   ),
                   child: const DrawableText(
                     text: 'سياسة الخصوصية',
-                    underLine: true,
+
                     color: AppColorManager.mainColorDark,
-                    fontFamily: FontManager.cairoBold,
+
                   ),
                 ),
               ],

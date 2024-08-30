@@ -1,14 +1,16 @@
 class GetUrl {
 
-  static var superUsers = 'api/services/app/InstitutionMembersService/getNewMemberPatch';
+  static const superUsers = 'api/services/app/InstitutionMembersService/getNewMemberPatch';
   static const getPolicy = 'api/services/app/Settings/Getsettings';
   static const getReport = 'api/services/app/InstitutionAttendancesService/GetAll';
 
-  static var home1 = 'api/services/app/InstitutionHomeService/Get';
+  static const home1 = 'api/services/app/InstitutionHomeService/Get';
+
+  static const buses = 'api/services/app/InstitutionBusesService/GetAll';
 }
 
 class PostUrl {
-  static var createSuperUsers = 'api/services/app/InstitutionSupervisorsService/Create';
+  static const createSuperUsers = 'api/services/app/InstitutionSupervisorsService/Create';
   static const loginUrl = 'api/services/app/InstitutionSupervisorsService/Authenticate';
 
   static const postSingleReport =
@@ -18,11 +20,11 @@ class PostUrl {
 }
 
 class PutUrl {
-  static var updateSuperUsers = 'api/services/app/InstitutionSupervisorsService/Update';
+  static const updateSuperUsers = 'api/services/app/InstitutionSupervisorsService/Update';
 }
 
 class DeleteUrl {
-  static var deleteSuperUsers = 'api/services/app/InstitutionSupervisorsService/Delete';
+  static const deleteSuperUsers = 'api/services/app/InstitutionSupervisorsService/Delete';
 }
 
 String get baseUrl {

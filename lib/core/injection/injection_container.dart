@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:qr_mobile_vision_example/features/buses/bloc/buses_cubit/buses_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/auth/bloc/home1_cubit/home1_cubit.dart';
@@ -45,6 +46,7 @@ Future<void> init() async {
   sl.registerFactory(() => SendReportCubit());
   sl.registerFactory(() => Home1Cubit());
   sl.registerFactory(() => ScanCubit());
+  sl.registerFactory(() => BusesCubit());
 
 
 //! External
