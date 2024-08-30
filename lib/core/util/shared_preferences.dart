@@ -13,15 +13,15 @@ class AppSharedPreference {
   static const _myId = '2';
   static const _phoneNumber = '3';
   static const _toScreen = '4';
-  static const _policy = '55151';
-  static const _previousTrips = '6';
+  static const _frontCamera = '55151';
+  static const _tapApp = '6';
   static const _profileInfo = '7';
   static const _trip = '8';
   static const _fireToken = '9';
   static const _sendFireToken = '10';
   static const _acceptorIme = '11';
   static const _wallet = '12';
-  static const _cart = '13';
+  static const _camera = '13';
   static const _requests = '14';
   static const _cameraDirection = '16';
   static const _latestUpdateMembers = '20';
@@ -89,10 +89,20 @@ class AppSharedPreference {
     return StateScreen.values[index];
   }
 
-  static cashAcceptPolicy() => _prefs?.setString(_policy, 'true');
+  static Future<void> cameraState() async =>
+      await _prefs?.setBool(_frontCamera, !(_prefs?.getBool(_frontCamera) ?? true));
 
-  static bool get isAcceptPolicy {
-    var s = _prefs?.getString(_policy)?.isNotEmpty ?? false;
+  static CameraDirection get cameraDir {
+    var s = _prefs?.getBool(_frontCamera) ?? true;
+
+    return s ? CameraDirection.FRONT : CameraDirection.BACK;
+  }
+
+  static Future<void> tapApp(bool b) async =>
+      await _prefs?.setBool(_tapApp, b);
+
+  static bool get isTapApp {
+    var s = _prefs?.getBool(_tapApp) ?? true;
 
     return s;
   }
@@ -111,7 +121,6 @@ class AppSharedPreference {
 
   static void logout() {
     _prefs?.clear();
-    cashAcceptPolicy();
   }
 
   static Future<void> reload() async => await _prefs?.reload();

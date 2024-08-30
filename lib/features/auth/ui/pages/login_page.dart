@@ -2,6 +2,7 @@ import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qr_mobile_vision_example/core/util/shared_preferences.dart';
 import 'package:qr_mobile_vision_example/core/widgets/app_bar_widget.dart';
 
 import '../../../../core/strings/app_color_manager.dart';
@@ -24,9 +25,11 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final request = LoginRequest();
+  var isTapApp = AppSharedPreference.isTapApp;
 
   @override
   Widget build(BuildContext context) {
+
     return BlocListener<LoginCubit, LoginInitial>(
       listenWhen: (p, c) => c.statuses == CubitStatuses.done,
       listener: (_, state) => Navigator.pushNamed(context, RouteNames.scanPage),
@@ -64,6 +67,20 @@ class _LoginPageState extends State<LoginPage> {
                   textAlign: TextAlign.right,
                   initialValue: request.password,
                   onChanged: (val) => request.password = val,
+                ),
+                10.0.verticalSpace,
+                CheckboxListTile(
+                  title: DrawableText(
+                    text: 'تطبيق التابلت الصيني؟',
+                    color: Colors.black,
+                  ),
+                  value: isTapApp,
+                  onChanged: (value) {
+                    isTapApp = value!;
+                    AppSharedPreference.tapApp(value).then((value) {
+                      setState(() {});
+                    });
+                  },
                 ),
                 10.0.verticalSpace,
                 BlocBuilder<LoginCubit, LoginInitial>(

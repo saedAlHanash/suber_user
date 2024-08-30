@@ -20,11 +20,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(const Duration(milliseconds: 1500), () async {
-      if (!AppSharedPreference.isAcceptPolicy) {
-        Navigator.pushReplacementNamed(context, RouteNames.policyScreen);
-        return;
-      }
-
       if (AppSharedPreference.isLogin) {
         Navigator.pushReplacementNamed(context, RouteNames.mainScreen);
         return;
