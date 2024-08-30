@@ -1,5 +1,7 @@
 import 'package:drawable_text/drawable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:image_multi_type/image_multi_type.dart';
+import 'package:image_multi_type/image_multi_type.dart';
 import 'package:qr_mobile_vision_example/core/strings/app_color_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -58,7 +60,8 @@ class MyTextFormWidget extends StatelessWidget {
               state(() => obscureText = !obscureText);
               if (onChangeObscure != null) onChangeObscure!();
             },
-            icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off));
+            icon: ImageMultiType(
+                url: obscureText ? Icons.visibility : Icons.visibility_off));
       });
     }
 
@@ -116,7 +119,7 @@ class MyTextFormOutLineWidget extends StatelessWidget {
   final bool? enable;
   final String label;
   final String hint;
-  final String? icon;
+  final dynamic icon;
   final int maxLines;
   final int maxLength;
   final bool obscureText;
@@ -138,7 +141,7 @@ class MyTextFormOutLineWidget extends StatelessWidget {
     if (icon != null) {
       suffixIcon = Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-        child: SvgPicture.asset(icon!, height: 23.0.h, width: 40.0.w),
+        child: ImageMultiType(url: icon!, height: 23.0.h, width: 40.0.w),
       );
     }
 
@@ -150,7 +153,8 @@ class MyTextFormOutLineWidget extends StatelessWidget {
               state(() => obscureText = !obscureText);
               if (onChangeObscure != null) onChangeObscure!();
             },
-            icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off));
+            icon: ImageMultiType(
+                url: obscureText ? Icons.visibility : Icons.visibility_off));
       });
     }
 
@@ -269,9 +273,10 @@ class MyEditTextWidgetState extends State<MyEditTextWidget> {
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0).r,
-              child: Icon(
-                obscureText ? Icons.visibility : Icons.visibility_off,
-                size: 20.0.spMin,
+              child: ImageMultiType(
+                url: obscureText ? Icons.visibility : Icons.visibility_off,
+                height: 20.0.spMin,
+                width: 20.0.r,
               ),
             ));
       });
@@ -418,7 +423,7 @@ class MyTextFormNoLabelWidget extends StatelessWidget {
     if (icon != null) {
       suffixIcon = Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-        child: SvgPicture.asset(icon!, height: 23.0.h, width: 40.0.w),
+        child: ImageMultiType(url: icon!, height: 23.0.h, width: 40.0.w),
       );
     }
 
@@ -430,7 +435,8 @@ class MyTextFormNoLabelWidget extends StatelessWidget {
               state(() => obscureText = !obscureText);
               if (onChangeObscure != null) onChangeObscure!();
             },
-            icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off));
+            icon: ImageMultiType(
+                url: obscureText ? Icons.visibility : Icons.visibility_off));
       });
     }
     final border = OutlineInputBorder(

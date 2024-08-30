@@ -25,7 +25,6 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => di.sl<LoadingCubit>()),
-        BlocProvider(create: (_) => di.sl<BusesCubit>()..getBuses()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(412, 870),

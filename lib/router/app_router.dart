@@ -9,6 +9,7 @@ import '../features/auth/bloc/policy_cubit/policy_cubit.dart';
 import '../features/auth/ui/pages/auth_page.dart';
 import '../features/auth/ui/pages/login_page.dart';
 import '../features/auth/ui/pages/policy_page.dart';
+import '../features/buses/bloc/buses_cubit/buses_cubit.dart';
 import '../features/qr/bloc/scan_cubit/scan_cubit.dart';
 import '../features/qr/bloc/send_report_cubit/send_report_cubit.dart';
 import '../features/qr/ui/pages/qr_page.dart';
@@ -39,6 +40,7 @@ class AppRoutes {
           BlocProvider(create: (_) => sl<AllSuperUsersCubit>()..getSuperUsers(_)),
           BlocProvider(create: (_) => sl<SendReportCubit>()),
           BlocProvider(create: (_) => sl<ScanCubit>()),
+          BlocProvider(create: (_) => sl<BusesCubit>()..getBuses()),
           BlocProvider(create: (_) => sl<Home1Cubit>()..getHome1(_)),
         ];
         return MaterialPageRoute(builder: (context) {

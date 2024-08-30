@@ -33,13 +33,13 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
 
 
     defaultConfig {
         applicationId "com.qareeb.supervisor_checker"
         minSdkVersion flutter.minSdkVersion
-        targetSdkVersion 33
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -64,7 +64,7 @@ android {
     lint {
         disable 'InvalidPackage'
     }
-    namespace 'com.github.rmtmckenzie.qrmobilevisionexample'
+    namespace 'com.qareeb.supervisor_checker'
 }
 
 gradle.projectsEvaluated {

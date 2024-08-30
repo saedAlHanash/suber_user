@@ -9,6 +9,7 @@ import 'package:qr_mobile_vision/qr_camera.dart';
 import 'package:qr_mobile_vision_example/core/api_manager/api_service.dart';
 import 'package:qr_mobile_vision_example/core/extensions/extensions.dart';
 import 'package:qr_mobile_vision_example/core/util/shared_preferences.dart';
+import 'package:qr_mobile_vision_example/core/widgets/app_bar_widget.dart';
 import 'package:qr_mobile_vision_example/core/widgets/images/image_multi_type.dart';
 import 'package:qr_mobile_vision_example/core/widgets/spinner_widget.dart';
 import 'package:qr_mobile_vision_example/features/buses/bloc/buses_cubit/buses_cubit.dart';
@@ -126,6 +127,7 @@ class _QRViewExampleState extends State<QRViewExample> {
         },
         child: SafeArea(
           child: Scaffold(
+            appBar: AppBarWidget(zeroHeight: true),
             bottomNavigationBar: InkWell(
               onTap: () {
                 // loggerObject.w(memberBox.get(93));
@@ -151,14 +153,27 @@ class _QRViewExampleState extends State<QRViewExample> {
             ),
             body: Column(
               children: [
-                10.0.verticalSpace,
+                20.0.verticalSpace,
                 BlocBuilder<BusesCubit, BusesInitial>(
                   builder: (context, state) {
-                    return SpinnerWidget(
-                      items: state.getSpinnerItems(),
+                    return SizedBox(
+                      width: 0.7.sw,
+                      child: SpinnerWidget(
+                        hintLabel: 'الباص اللذي يتم تفتيشه',
+                        items:
+                            state.getSpinnerItems(selected: AppSharedPreference.getBusId),
+                        onChanged: (spinnerItem) {
+                          AppSharedPreference.cashBusId(spinnerItem.id).then(
+                            (value) {
+                              AppSharedPreference.reload();
+                            },
+                          );
+                        },
+                      ),
                     );
                   },
                 ),
+                20.0.verticalSpace,
                 logosBuilder(),
                 Container(
                   height: 300.0.r,
@@ -216,7 +231,7 @@ class _QRViewExampleState extends State<QRViewExample> {
 
                       sl<RequestsService>().addToRequests(
                         ReportRequest(
-                          busMemberId: model.id,
+                          busMemberId: AppSharedPreference.getBusId,
                           date: DateTime.now(),
                         ),
                       );

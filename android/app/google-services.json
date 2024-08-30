@@ -1,35 +1,185 @@
 {
   "project_info": {
-    "project_number": "764765102680",
-    "firebase_url": "https://flutter-qr-mobile-vision.firebaseio.com",
-    "project_id": "flutter-qr-mobile-vision",
-    "storage_bucket": "flutter-qr-mobile-vision.appspot.com"
+    "project_number": "92692714826",
+    "project_id": "qareeb-29b73",
+    "storage_bucket": "qareeb-29b73.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:764765102680:android:1b8e34a4ad3bf6c2d4202d",
+        "mobilesdk_app_id": "1:92692714826:android:42509aa5fb3aa7fddc5db3",
         "android_client_info": {
-          "package_name": "com.github.rmtmckenzie.qrmobilevisionexample"
+          "package_name": "com.admin_notifications"
         }
       },
       "oauth_client": [
         {
-          "client_id": "764765102680-hjtu21f2gtbpl98d1j1samhdgjbsvhee.apps.googleusercontent.com",
+          "client_id": "92692714826-en207gcercdmtkvmcf596rr8360et1ne.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBxv0UbZf5h_Kf9KaBzOFNdhgvNfbgUvE4"
+          "current_key": "AIzaSyASgUmIGohZBGEENiwBtAMz9EAzoC4Ll_8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "764765102680-hjtu21f2gtbpl98d1j1samhdgjbsvhee.apps.googleusercontent.com",
+              "client_id": "92692714826-en207gcercdmtkvmcf596rr8360et1ne.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "92692714826-plqs5ii0bcl2iq919dkbfr43o43bmpbm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.qareeb.client.flutterQareebClient"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92692714826:android:f5e6f462ef2959f4dc5db3",
+        "android_client_info": {
+          "package_name": "com.almobtakiroon.qareeb.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92692714826-en207gcercdmtkvmcf596rr8360et1ne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASgUmIGohZBGEENiwBtAMz9EAzoC4Ll_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92692714826-en207gcercdmtkvmcf596rr8360et1ne.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "92692714826-plqs5ii0bcl2iq919dkbfr43o43bmpbm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.qareeb.client.flutterQareebClient"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92692714826:android:cadcb0e93a111735dc5db3",
+        "android_client_info": {
+          "package_name": "com.almobtakiroon.qareebclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92692714826-en207gcercdmtkvmcf596rr8360et1ne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASgUmIGohZBGEENiwBtAMz9EAzoC4Ll_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92692714826-en207gcercdmtkvmcf596rr8360et1ne.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "92692714826-plqs5ii0bcl2iq919dkbfr43o43bmpbm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.qareeb.client.flutterQareebClient"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92692714826:android:d6f151fe4b796305dc5db3",
+        "android_client_info": {
+          "package_name": "com.firstPioneers.qareeb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92692714826-en207gcercdmtkvmcf596rr8360et1ne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASgUmIGohZBGEENiwBtAMz9EAzoC4Ll_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92692714826-en207gcercdmtkvmcf596rr8360et1ne.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "92692714826-plqs5ii0bcl2iq919dkbfr43o43bmpbm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.qareeb.client.flutterQareebClient"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92692714826:android:6e068e7da5bd2924dc5db3",
+        "android_client_info": {
+          "package_name": "com.qareeb.supervisor_checker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92692714826-en207gcercdmtkvmcf596rr8360et1ne.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASgUmIGohZBGEENiwBtAMz9EAzoC4Ll_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92692714826-en207gcercdmtkvmcf596rr8360et1ne.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "92692714826-plqs5ii0bcl2iq919dkbfr43o43bmpbm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.qareeb.client.flutterQareebClient"
+              }
             }
           ]
         }
