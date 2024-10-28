@@ -33,13 +33,13 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
 
 
     defaultConfig {
         applicationId "com.github.rmtmckenzie.qrmobilevisionexample"
-        minSdkVersion 19
-        targetSdkVersion 33
+        minSdkVersion flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
@@ -64,6 +64,17 @@ android {
     lint {
         disable 'InvalidPackage'
     }
+
+    configurations.all {
+        exclude group: "com.google.mlkit", module: "barcode-scanning"
+    }
+//  ...
+    dependencies {
+        // ...
+        // Use this dependency to use the dynamically downloaded model in Google Play Services
+        implementation 'com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.1'
+    }
+
     namespace 'com.github.rmtmckenzie.qrmobilevisionexample'
 }
 

@@ -16,6 +16,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="qr_mobile_vision_example"
         android:allowBackup="false">
+
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="barcode" />
+
         <activity
             android:name="io.flutter.embedding.android.FlutterActivity"
             android:exported="true"

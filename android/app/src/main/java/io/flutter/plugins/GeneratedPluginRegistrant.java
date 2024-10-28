@@ -36,9 +36,9 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin path_provider_android, io.flutter.plugins.pathprovider.PathProviderPlugin", e);
     }
     try {
-      flutterEngine.getPlugins().add(new com.github.rmtmckenzie.qrmobilevision.QrMobileVisionPlugin());
+      flutterEngine.getPlugins().add(new com.github.rmtmckenzie.qr_mobile_vision.QrMobileVisionPlugin());
     } catch (Exception e) {
-      Log.e(TAG, "Error registering plugin qr_mobile_vision, com.github.rmtmckenzie.qrmobilevision.QrMobileVisionPlugin", e);
+      Log.e(TAG, "Error registering plugin qr_mobile_vision, com.github.rmtmckenzie.qr_mobile_vision.QrMobileVisionPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin());
@@ -49,11 +49,6 @@ public final class GeneratedPluginRegistrant {
       flutterEngine.getPlugins().add(new com.tekartik.sqflite.SqflitePlugin());
     } catch (Exception e) {
       Log.e(TAG, "Error registering plugin sqflite, com.tekartik.sqflite.SqflitePlugin", e);
-    }
-    try {
-      flutterEngine.getPlugins().add(new creativemaybeno.wakelock.WakelockPlugin());
-    } catch (Exception e) {
-      Log.e(TAG, "Error registering plugin wakelock, creativemaybeno.wakelock.WakelockPlugin", e);
     }
   }
 }

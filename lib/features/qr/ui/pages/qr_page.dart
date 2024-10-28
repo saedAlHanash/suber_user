@@ -20,7 +20,7 @@ import '../../../super_user/bloc/all_super_users_cubit/all_super_users_cubit.dar
 import '../../bloc/send_report_cubit/send_report_cubit.dart';
 import '../../data/request/report_request.dart';
 import '../../data/response/scan_code_model.dart';
-import 'package:wakelock/wakelock.dart';
+// import 'package:wakelock/wakelock.dart';
 
 class QrPage extends StatelessWidget {
   const QrPage({Key? key}) : super(key: key);
@@ -87,7 +87,7 @@ class _QRViewExampleState extends State<QRViewExample> {
         );
       },
     );
-    Wakelock.enable();
+    // Wakelock.enable();
     super.initState();
   }
 
@@ -335,7 +335,7 @@ class _QRViewExampleState extends State<QRViewExample> {
   @override
   void dispose() {
     // controller?.dispose();
-    Wakelock.disable();
+    // Wakelock.disable();
     super.dispose();
   }
 }
