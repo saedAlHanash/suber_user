@@ -72,7 +72,7 @@ class APIService {
 
   Future<DateTime> getServerTime() async {
     if (_serverDate != null) return _serverDate!;
-    var uri = Uri.https(baseUrl);
+    var uri = Uri.http(baseUrl);
 
     final response = await http.get(uri, headers: innerHeader).timeout(
           const Duration(seconds: 40),
@@ -104,7 +104,7 @@ class APIService {
 
     logRequest('${hostName ?? ''}$url', query);
 
-    final uri = Uri.https(hostName ?? baseUrl, url, query);
+    final uri = Uri.http(hostName ?? baseUrl, url, query);
 
     final response = await http.get(uri, headers: innerHeader).timeout(
           const Duration(seconds: 400),
@@ -134,7 +134,7 @@ class APIService {
 
     var listBody = body?['asList'];
 
-    final uri = Uri.https(hostName ?? baseUrl, url, query);
+    final uri = Uri.http(hostName ?? baseUrl, url, query);
 
     logRequest(url, (body ?? {})..addAll(query ?? {}));
 
@@ -166,7 +166,7 @@ class APIService {
       query.forEach((key, value) => query[key] = value.toString());
     }
 
-    final uri = Uri.https(baseUrl, url, query);
+    final uri = Uri.http(baseUrl, url, query);
 
     logRequest(url, body);
 
@@ -196,7 +196,7 @@ class APIService {
 
     innerHeader.addAll(header ?? {});
 
-    final uri = Uri.https(baseUrl, url, query);
+    final uri = Uri.http(baseUrl, url, query);
 
     logRequest(url, body);
 
