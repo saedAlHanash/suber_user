@@ -36,7 +36,7 @@ class PolicyCubit extends Cubit<PolicyInitial> {
   }
 
   Future<Pair<PolicyResult?, String?>> _getPolicyApi() async {
-    if (await network.isConnected) {
+    if (true) {
       final response = await APIService().getApi(url: GetUrl.getPolicy);
 
       if (response.statusCode == 200) {

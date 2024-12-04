@@ -21,7 +21,7 @@ import 'package:qr_mobile_vision_example/core/strings/app_color_manager.dart';
 import '../../core/injection/injection_container.dart' as di;
 import '../../features/qr/ui/pages/qr_page.dart';
 import '../../router/app_router.dart';
-
+import 'dart:io';
 late Box<String> memberBox;
 
 void main() async {
@@ -36,7 +36,7 @@ void main() async {
   await Hive.initFlutter();
 
   memberBox = await Hive.openBox('members');
-
+  HttpOverrides.global = MyHttpOverrides();
   runApp(MyApp());
 }
 
@@ -113,5 +113,13 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
 }
