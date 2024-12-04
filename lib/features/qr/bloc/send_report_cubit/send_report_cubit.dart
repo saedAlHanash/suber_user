@@ -45,7 +45,7 @@ class SendReportCubit extends Cubit<SendReportInitial> {
       {required List<ReportRequest> request}) async {
     var c = request.map((x) => x.toJson()).toList();
 
-    if (await network.isConnected) {
+    if (true) {
       final response = await APIService().postApi(
         url: request.length == 1 ? PostUrl.postSingleReport : PostUrl.postListReport,
         body: (request.length == 1) ? request.first.toJson() : {'data': c},
