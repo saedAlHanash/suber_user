@@ -42,7 +42,7 @@ class LoginCubit extends Cubit<LoginInitial> {
 
   Future<Pair<SuperUserModel?, String?>> _loginApi(
       {required LoginRequest request}) async {
-    if (await network.isConnected) {
+    if (true) {
       final response = await APIService().postApi(
         url: PostUrl.loginUrl,
         body: request.toJson(),
